@@ -30,6 +30,7 @@ preferred-citation:
     - family-names: Fishbach
       given-names: Maya
       orcid: "https://orcid.org/0000-0002-1980-5293"
+  year: 2026
   identifiers:
     - type: other
       value: "arXiv:2605.12858"

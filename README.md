@@ -4,7 +4,7 @@
 
 The BBH merger rate is the progenitor formation rate convolved with the delay time distribution. This code solves that convolution backwards: given a merger rate and an assumed delay time distribution, it computes the progenitor formation rate directly in the time domain, without assuming the formation rate's functional form. A delay time distribution that requires a negative formation rate is incompatible with the merger rate, so the method can test any delay time distribution, including redshift-dependent predictions from population synthesis, against a merger rate posterior.
 
-This is companion code to the paper "Forbidden Formation Histories: The Binary Black Hole Merger Rate Disfavours Long Delay Times" ([arXiv:2605.12858](https://arxiv.org/abs/2605.12858)), and the notebook makes every result and figure of the paper.
+This is companion code to the paper "Forbidden Formation Histories: The Binary Black Hole Merger Rate Disfavours Long Delay Times" ([arXiv:2605.12858](https://arxiv.org/abs/2605.12858)), and the notebook makes every figure of the paper and the numerical results quoted with them, for the fiducial metallicity history.
 
 ## Using the method
 
@@ -15,7 +15,7 @@ from deconvolution import cosmo, Grid, solve
 
 # zs: redshifts of the merger rate posterior, R: merger rate draws, shape (len(zs), n_draws) [Gpc^-3 yr^-1]
 grid = Grid(cosmo.age(zs).to_value(u.yr))
-Rm = grid.merger_rate(R, boundary=0)          # merger rate beyond z = 1.5 [Gpc^-3 yr^-1]
+Rm = grid.merger_rate(R, boundary=0)          # on the grid; boundary = merger rate beyond z = 1.55 [Gpc^-3 yr^-1]
 
 # your delay time distribution, tabulated in Gyr
 t = np.logspace(-2, np.log10(13.7), 500)
@@ -26,7 +26,7 @@ R_form = solve(K, Rm)                         # formation rate of every draw on 
 P = grid.compatibility(K, Rm)                 # fraction of draws with a non-negative formation rate
 ```
 
-For a delay time distribution that depends on formation time, pass one kernel per metallicity class and their weights at each formation step to `grid.forward_matrix` (see `compas_delay_times.py`).
+For a delay time distribution that depends on formation time, pass one kernel per metallicity class and their weights at each formation step to `grid.forward_matrix` (see the delay time distribution cells of the notebook and `compas_delay_times.py`).
 
 ## Files
 
@@ -43,9 +43,9 @@ For a delay time distribution that depends on formation time, pass one kernel pe
 The input data are included in `data/`, redistributed under CC BY 4.0 from their original releases (see `data/README.md` for details and changes). If you use them, please cite:
 
 * GWTC-4.0 BBH merger rate (`data/Rates_redshift_O4_bspline.h5`): LIGO Scientific Collaboration, Virgo Collaboration & KAGRA Collaboration (2025), "GWTC-4.0: Population Properties of Merging Compact Binaries", https://doi.org/10.5281/zenodo.16911563.
-* COMPAS delay time distributions and BBH yields (`data/10019887/Output/`): Fishbach & van Son (2023), "LIGO-Virgo-KAGRA's Oldest Black Holes: Probing star formation at cosmic noon with GWTC-3", https://doi.org/10.5281/zenodo.10019887, from the COMPAS simulations of van Son et al. (2022).
+* COMPAS delay time distributions and BBH yields (`data/10019887/Output/`): Fishbach & van Son (2023), "Data Release: LIGO-Virgo-KAGRA's Oldest Black Holes: Probing star formation at cosmic noon with GWTC-3", https://doi.org/10.5281/zenodo.10019887, from the COMPAS simulations of van Son et al. (2022).
 
-The metallicity distribution of star formation (van Son et al. 2023) and the star formation rate shape (Katsianis et al. 2021) are analytic and are coded in `compas_delay_times.py` and the notebook.
+The metallicity distribution of star formation (van Son et al. 2023) and the star formation rate shape (Katsianis et al. 2021) are analytic: the former is coded in `compas_delay_times.py` and the latter in the notebook.
 
 ## Running
 
