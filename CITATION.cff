@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the paper below and this software release."
+title: "Deconvolving the BBH merger rate: companion code to Forbidden Formation Histories"
+type: software
+authors:
+  - family-names: Schiebelbein-Zwack
+    given-names: Aryanna
+    orcid: "https://orcid.org/0009-0003-3908-6112"
+  - family-names: Fishbach
+    given-names: Maya
+    orcid: "https://orcid.org/0000-0002-1980-5293"
+version: "1.0.0"
+date-released: "2026-10-29"
+doi: "10.5281/zenodo.23773173"
+license: MIT
+repository-code: "https://github.com/arysch/Deconvolving_merger_rates"
+keywords:
+  - gravitational waves
+  - binary black holes
+  - merger rate
+  - delay time distribution
+  - deconvolution
+preferred-citation:
+  type: article
+  title: "Forbidden Formation Histories: The Binary Black Hole Merger Rate Disfavours Long Delay Times"
+  authors:
+    - family-names: Schiebelbein-Zwack
+      given-names: Aryanna
+      orcid: "https://orcid.org/0009-0003-3908-6112"
+    - family-names: Fishbach
+      given-names: Maya
+      orcid: "https://orcid.org/0000-0002-1980-5293"
+  identifiers:
+    - type: other
+      value: "arXiv:2605.12858"
+      description: "arXiv preprint"
+  url: "https://arxiv.org/abs/2605.12858"
